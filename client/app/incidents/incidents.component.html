@@ -5,45 +5,39 @@
 <div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Historic Incidents ({{ incidents.length }})</h4>
   <div class="card-block">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-default">
-        <tr>
-          <th>Incident Number</th>
-          <th>Common Place Name</th>
-          <th>Fire Department</th>
-        </tr>
-      </thead>
-      <tbody *ngIf="incidents.length === 0">
-        <tr>
-          <td colspan="4">There are no incidents in the DB. Please import incidents via mongoimport.</td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr *ngFor="let incident of incidents">
-          <td>{{ incident?.description.incident_number }}</td>
-          <td>{{ incident?.address.common_place_name }}</td>
-          <td>{{ incident?.fire_department?.name }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div *ngIf="rows && rows.length > 0">
+      <ngx-datatable class="material"
+        [rows]="rows"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [scrollbarH]="true"
+        [headerHeight]="50"
+        [rowHeight]="50"
+        [selected]="selected"
+        [selectionType]="'single'"
+        [footerHeight]="50"
+        (select)='onSelect($event)'>
+      </ngx-datatable>
+    </div>
+    <div *ngIf="rows.length === 0">
+      <span class="text-danger">No incidents loaded! See README to import into Mongodb via mongoimport</span>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-7">
-    <!-- just use first entry until we get table select working -->
-    <app-incident-map *ngIf="incidents.length > 0"
-      [incident]="incidents[0]">
+    <app-incident-map *ngIf="selected.length > 0"
+      [incident]="selected[0]">
     </app-incident-map>
   </div>
   <div class="col-md-5">
     <div clas="row">
-      <!-- just use first entry until we get table select working -->
-      <app-incident-weather *ngIf="incidents.length > 0"
-        [incident]="incidents[0]">
+      <app-incident-weather *ngIf="selected.length > 0"
+        [incident]="selected[0]">
       </app-incident-weather>
-      <app-incident-parcel *ngIf="incidents.length > 0"
-        [incident]="incidents[0]">
+      <app-incident-parcel *ngIf="selected.length > 0"
+        [incident]="selected[0]">
       </app-incident-parcel>
     </div>
   </div>

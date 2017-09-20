@@ -37,6 +37,8 @@ export class IncidentMapComponent implements OnInit, OnChanges {
     center: L.latLng([ RICHMOND.latitude, RICHMOND.longitude ])
   };
 
+  map;
+
   constructor(public toast: ToastComponent) { }
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class IncidentMapComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.buildLayers(this.incident);
+    this.setBounds();
   }
 
   buildLayers(incident) {
@@ -79,8 +82,15 @@ export class IncidentMapComponent implements OnInit, OnChanges {
   }
 
   onMapReady(map: L.Map) {
-    // zoom to fit marker
-    const group = new L.featureGroup(this.leafletLayers);
-    map.fitBounds(group.getBounds());
+    this.map = map;
+    this.setBounds();
+  }
+
+  setBounds() {
+    // zoom to fit
+    if (this.map && this.leafletLayers) {
+      const group = new L.featureGroup(this.leafletLayers);
+      this.map.fitBounds(group.getBounds());
+    }
   }
 }

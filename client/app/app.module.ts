@@ -24,6 +24,7 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     RoutingModule,
     SharedModule,
     LeafletModule.forRoot(),
+    NgxDatatableModule,
   ],
   providers: [
     AuthService,

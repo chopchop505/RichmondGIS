@@ -31,7 +31,7 @@ export class IncidentParcelComponent implements OnInit, OnChanges {
   getParcels(incident) {
     if (incident) {
       this.isLoading = true;
-      
+
       const params = {
         latitude: incident.address ? incident.address.latitude : null,
         longitude: incident.address ? incident.address.longitude : null,
