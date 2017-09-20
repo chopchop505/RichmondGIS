@@ -18,8 +18,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
 
-console.dir(process.env.DARK_SKY_API_KEY);
-
 if (process.env.NODE_ENV === 'test') {
   mongoose.connect(process.env.MONGODB_TEST_URI);
 } else {

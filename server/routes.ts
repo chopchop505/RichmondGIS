@@ -1,6 +1,8 @@
 import * as express from 'express';
 
 import IncidentCtrl from './controllers/incident';
+import WeatherCtrl from './controllers/weather';
+
 import UserCtrl from './controllers/user';
 
 import Incident from './models/incident';
@@ -13,9 +15,13 @@ export default function setRoutes(app) {
   const incidentCtrl = new IncidentCtrl();
 
   const userCtrl = new UserCtrl();
+  const weatherCtrl = new WeatherCtrl();
 
   // Incident
   router.route('/incidents').get(incidentCtrl.getAll);
+
+  // Weather
+  router.route('/weather').get(weatherCtrl.apiKey, weatherCtrl.latitude, weatherCtrl.longitude, weatherCtrl.time, weatherCtrl.query);
 
   // Users
   router.route('/login').post(userCtrl.login);

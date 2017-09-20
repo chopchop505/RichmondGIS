@@ -1,0 +1,29 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Historic Weather at {{ getTime(weather) }}</h4>
+  <div class="card-block">
+    <ul>
+      <li>
+        <strong>Summary:</strong> {{ weather?.currently?.summary }}
+      </li>
+      <li>
+        <strong>Temperature:</strong> {{ weather?.currently?.temperature }}
+      </li>
+      <li>
+        <strong>Precipitation Probability:</strong> {{ weather?.currently?.precipProbability }}
+      </li>
+      <li>
+        <strong>Precipitation Intensity:</strong> {{ weather?.currently?.precipIntensity }}
+      </li>
+      <li>
+        <strong>Wind Speed:</strong> {{ weather?.currently?.windSpeed }}
+      </li>
+      <li>
+        <strong>Cloud Cover:</strong> {{ weather?.currently?.cloudCover }}
+      </li>
+    </ul>
+  </div>
+</div>

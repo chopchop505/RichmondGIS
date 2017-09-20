@@ -18,7 +18,7 @@
           <td colspan="4">There are no incidents in the DB. Please import incidents via mongoimport.</td>
         </tr>
       </tbody>
-      <tbody *ngIf="!isEditing">
+      <tbody>
         <tr *ngFor="let incident of incidents">
           <td>{{ incident?.description.incident_number }}</td>
           <td>{{ incident?.address.common_place_name }}</td>
@@ -26,5 +26,19 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <!-- map placeholder -->
+  </div>
+  <div class="col-md-6">
+    <div clas="row">
+      <!-- just use first entry until we get table select working -->
+      <app-incident-weather *ngIf="incidents.length > 0"
+        [incident]="incidents[0]">
+      </app-incident-weather>
+    </div>
   </div>
 </div>
