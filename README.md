@@ -3,7 +3,7 @@
 ## Stack Overview
 This project was based on generated scaffolding provided by: [Angular-Full-Stack](https://github.com/DavideViolante/Angular-Full-Stack).  
 
-This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle):
+This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)):
 * [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): database
 * [**E**xpress.js](http://expressjs.com): backend framework
 * [**A**ngular 2+](https://angular.io): frontend framework
@@ -24,13 +24,13 @@ This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_
 A window will automatically open at [localhost:4200](http://localhost:4200). Angular and Express files are being watched. Any change automatically creates a new bundle, restart Express server and reload your browser.
 
 ## Known Issues
-* Investigate discrepancy in time variable. The 'time' variable displaced in Weather card does not match the Event date to the same hour.  Likely a timezone issue.
+* Investigate discrepancy in time variable. The 'time' variable displayed in Weather card does not match the Event date to the same hour.  Likely a timezone issue.
 
 ## To do
 The project meets the current requirements, but theres always room for improvement:
 * Backend & Frontend Unit tests
 * Documentation
-* Enrich further by illustrate timeline of 'apparatus' response
+* Enrich further by illustrating timeline of 'apparatus' response
 * Add ability to add incident data from frontend or interface to import from source
 
 ## Hours
