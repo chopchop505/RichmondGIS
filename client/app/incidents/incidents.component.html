@@ -1,0 +1,30 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Current incidents ({{ incidents.length }})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Incident Number</th>
+          <th>Common Place Name</th>
+          <th>Fire Department</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="incidents.length === 0">
+        <tr>
+          <td colspan="4">There are no incidents in the DB. Please import incidents via mongoimport.</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let incident of incidents">
+          <td>{{ incident?.description.incident_number }}</td>
+          <td>{{ incident?.address.common_place_name }}</td>
+          <td>{{ incident?.fire_department?.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

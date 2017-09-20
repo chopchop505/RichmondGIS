@@ -1,13 +1,21 @@
 import * as express from 'express';
 
+import IncidentCtrl from './controllers/incident';
 import UserCtrl from './controllers/user';
+
+import Incident from './models/incident';
 import User from './models/user';
 
 export default function setRoutes(app) {
 
   const router = express.Router();
 
+  const incidentCtrl = new IncidentCtrl();
+
   const userCtrl = new UserCtrl();
+
+  // Incident
+  router.route('/incidents').get(incidentCtrl.getAll);
 
   // Users
   router.route('/login').post(userCtrl.login);
