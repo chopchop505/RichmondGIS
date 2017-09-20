@@ -12,6 +12,7 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 import { AppComponent } from './app.component';
 import { IncidentsComponent } from './incidents/incidents.component';
+import { IncidentMapComponent } from './incidents/incident-map.component';
 import { IncidentParcelComponent } from './incidents/incident-parcel.component';
 import { IncidentWeatherComponent } from './incidents/incident-weather.component';
 import { AboutComponent } from './about/about.component';
@@ -22,10 +23,13 @@ import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [
     AppComponent,
     IncidentsComponent,
+    IncidentMapComponent,
     IncidentParcelComponent,
     IncidentWeatherComponent,
     AboutComponent,
@@ -34,11 +38,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LogoutComponent,
     AccountComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     RoutingModule,
     SharedModule,
+    LeafletModule.forRoot(),
   ],
   providers: [
     AuthService,

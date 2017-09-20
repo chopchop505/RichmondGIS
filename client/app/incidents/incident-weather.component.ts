@@ -11,8 +11,8 @@ import * as moment from 'moment';
   styleUrls: ['./incident-weather.component.scss']
 })
 export class IncidentWeatherComponent implements OnInit, OnChanges {
-
   @Input() incident = {};
+
   isLoading = true;
   error = '';
   weather = {};
@@ -30,6 +30,8 @@ export class IncidentWeatherComponent implements OnInit, OnChanges {
 
   getWeather(incident) {
     if (incident) {
+      this.isLoading = true;
+
       const params = {
         latitude: incident.address ? incident.address.latitude : null,
         longitude: incident.address ? incident.address.longitude : null,

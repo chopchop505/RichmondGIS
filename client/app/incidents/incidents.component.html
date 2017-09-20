@@ -3,7 +3,7 @@
 <app-toast [message]="toast.message"></app-toast>
 
 <div class="card" *ngIf="!isLoading">
-  <h4 class="card-header">Historic incidents ({{ incidents.length }})</h4>
+  <h4 class="card-header">Historic Incidents ({{ incidents.length }})</h4>
   <div class="card-block">
     <table class="table table-bordered table-striped">
       <thead class="thead-default">
@@ -31,7 +31,10 @@
 
 <div class="row">
   <div class="col-md-7">
-    <!-- map placeholder -->
+    <!-- just use first entry until we get table select working -->
+    <app-incident-map *ngIf="incidents.length > 0"
+      [incident]="incidents[0]">
+    </app-incident-map>
   </div>
   <div class="col-md-5">
     <div clas="row">

@@ -1,0 +1,12 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <div style="height: 560px;"
+     leaflet
+     [leafletOptions]="leafletOptions"
+     [leafletLayers]="leafletLayers"
+     (leafletMapReady)="onMapReady($event)">
+   </div>
+</div>

@@ -11,8 +11,8 @@ import * as moment from 'moment';
   styleUrls: ['./incident-parcel.component.scss']
 })
 export class IncidentParcelComponent implements OnInit, OnChanges {
-
   @Input() incident = {};
+
   isLoading = true;
   error = '';
   parcels = [];
@@ -30,6 +30,8 @@ export class IncidentParcelComponent implements OnInit, OnChanges {
 
   getParcels(incident) {
     if (incident) {
+      this.isLoading = true;
+      
       const params = {
         latitude: incident.address ? incident.address.latitude : null,
         longitude: incident.address ? incident.address.longitude : null,
