@@ -3,9 +3,12 @@
 <app-toast [message]="toast.message"></app-toast>
 
 <div class="card" *ngIf="!isLoading">
-  <h4 class="card-header">Historic Weather at {{ getTime(weather) }}</h4>
+  <h4 class="card-header">Weather Info</h4>
   <div class="card-block">
-    <ul>
+    <ul *ngIf="!error">
+      <li>
+        <strong>Time:</strong> {{ getTime(weather) }}
+      </li>
       <li>
         <strong>Summary:</strong> {{ weather?.currently?.summary }}
       </li>
@@ -25,5 +28,8 @@
         <strong>Cloud Cover:</strong> {{ weather?.currently?.cloudCover }}
       </li>
     </ul>
+    <span class="text-danger" *ngIf="error">
+      {{ this.error }}
+    </span>
   </div>
 </div>

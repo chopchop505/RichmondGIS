@@ -1,0 +1,40 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">Parcel Info</h4>
+  <div class="card-block">
+    <div *ngIf="!error">
+      <ul *ngFor="let parcel of parcels">
+        <li>
+          <strong>ParcelID:</strong> {{ parcel?.attributes?.ParcelID }}
+        </li>
+        <li>
+          <strong>Owner Name:</strong> {{ parcel?.attributes?.OwnerName }}
+        </li>
+        <li>
+          <strong>Total Value:</strong> ${{ parcel?.attributes?.TotalValue | number:'.0' }}
+        </li>
+        <li>
+          <strong>Land Value:</strong> ${{ parcel?.attributes?.LandValue | number:'.0' }}
+        </li>
+        <li>
+          <strong>Dwelling Value:</strong> ${{ parcel?.attributes?.DwellingValue | number:'.0' }}
+        </li>
+        <li>
+          <strong>Land SqFt:</strong> {{ parcel?.attributes?.LandSqFt | number:'.0' }}
+        </li>
+        <li>
+          <strong>Land Use:</strong> {{ parcel?.attributes?.LandUse }}
+        </li>
+      </ul>
+    </div>
+    <span *ngIf="!error && parcels.length === 0">
+      <span class="text-warning">No parcel data found</span>
+    </span>
+    <span class="text-danger" *ngIf="error">
+      {{ this.error }}
+    </span>
+  </div>
+</div>

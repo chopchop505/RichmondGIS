@@ -1,34 +1,34 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { WeatherService } from '../services/weather.service';
+import { ParcelService } from '../services/parcel.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-incident-weather',
-  templateUrl: './incident-weather.component.html',
-  styleUrls: ['./incident-weather.component.scss']
+  selector: 'app-incident-parcel',
+  templateUrl: './incident-parcel.component.html',
+  styleUrls: ['./incident-parcel.component.scss']
 })
-export class IncidentWeatherComponent implements OnInit, OnChanges {
+export class IncidentParcelComponent implements OnInit, OnChanges {
 
   @Input() incident = {};
   isLoading = true;
   error = '';
-  weather = {};
+  parcels = [];
 
-  constructor(private weatherService: WeatherService,
+  constructor(private parcelService: ParcelService,
               public toast: ToastComponent) { }
 
   ngOnInit() {
-    this.getWeather(this.incident);
+    this.getParcels(this.incident);
   }
 
   ngOnChanges() {
-    this.getWeather(this.incident);
+    this.getParcels(this.incident);
   }
 
-  getWeather(incident) {
+  getParcels(incident) {
     if (incident) {
       const params = {
         latitude: incident.address ? incident.address.latitude : null,
@@ -36,8 +36,8 @@ export class IncidentWeatherComponent implements OnInit, OnChanges {
         time: incident.description ? moment(incident.description.event_opened).unix() : null,
       };
 
-      this.weatherService.getWeather(params).subscribe(
-        data => this.weather = data,
+      this.parcelService.getParcels(params).subscribe(
+        data => this.parcels = data,
         error => {
           console.log(error);
           this.error = error.json().error;
@@ -47,11 +47,4 @@ export class IncidentWeatherComponent implements OnInit, OnChanges {
       );
     }
   }
-
-  getTime(weather) {
-    if (weather && weather.currently && weather.currently.time) {
-      return moment.unix(weather.currently.time).format('LLL');
-    }
-  }
-
 }
